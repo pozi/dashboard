@@ -15,13 +15,177 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- Generic page styles -->
+    <link rel="stylesheet" href="../jquery-file-upload/css/style.css">
+    <link rel="stylesheet" href="../jquery-file-upload/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <style>
+      body {
+        padding:20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Property Health Check</h1>
+    <div>
+      <h1>Property Health Check</h1>
+    </div>
+    <div id="step1">
+      <h2 >Upload your statistics file (.json)</h2>
+      <input id="fileupload" type="file" name="files[]" data-url="../jquery-file-upload/server/php/index.php">
+    </div>
+
+    <div id="step2" class="hidden">
+      <!-- h2>Explore your statistics visually</h2 -->
+      <div class="container" style="padding-top:20px;font-size:12px;">
+        <h3>Current status</h3>
+        <div class="row text-center">
+          <div class="well col-xs-3">
+            <p> Last execution<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+               <span id="date_current" style="font-size:24px;">n/a</span><br>
+               
+            </p>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="well col-xs-4">
+            <p> Match rate<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+               <span id="metric1_current" style="font-size:48px;">n/a</span><br>
+               %
+            </p>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="well col-xs-3">
+            <p> Number properties matched<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+               <span id="metric2_current" style="font-size:48px;">n/a</span><br>
+               records
+            </p>
+          </div>
+        </div>
+
+        <h3>History</h3>
+        <div class="row text-center">
+          <div class="well col-xs-3">
+            <p> Number of executions<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+               <span id="metric1_history" style="font-size:48px;">n/a</span><br>
+               
+            </p>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="well col-xs-4">
+            <p style="font-size:18px;text-align:center;">Match rate</p>
+            <div id="myfirstchart" style="height: 250px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../jquery-1.11.1.min.js"></script>
+
+    <!-- File upload plugin specific stuff -->
+    <script src="../jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="../jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="../jquery-file-upload/js/jquery.fileupload.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bootstrap-3.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Vix library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
+    <script>
+      // Helper class for number formatting
+      function numberWithCommas(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      $(function () {
+        $('#fileupload').fileupload({
+          dataType: 'json',
+          autoUpload: true,
+          acceptFileTypes: /(\.|\/)(json)$/i,
+          maxFileSize: 100000, // 100 kB
+          disableImageResize: true,
+          done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+              if (file.url)
+              {
+                // Layout update on successful upload
+                $('<p/>').text('File successfully uploaded.').appendTo($('#step1'));
+                $('#step1').hide();
+                $('#step2').removeClass("hidden");
+
+                // Extraction of the content just uploaded
+                $.getJSON(file.url,function(json){
+                  var d = json.data;
+                  // Do something with the JSON content
+                  // Make an array of object ordered by date
+
+                  function compare(a,b) {
+                    var a_date = new Date(a.date);
+                    var b_date = new Date(b.date);
+
+                    if (a_date < b_date)
+                      return -1;
+                    else 
+                      return 1;
+                  }
+
+                  // Sorting the elements in the array by date
+                  d.sort(compare);
+                  console.log(d);
+
+                  // The last element contains the current metrics
+                  $('#date_current').html(d[d.length-1].date);
+                  $('#metric1_current').html(d[d.length-1].metric1);
+                  $('#metric2_current').html(numberWithCommas(d[d.length-1].metric2));
+                  $('#metric1_history').html(d.length);
+                  // Massage the JSON data to feed into the Morris data property
+                  // Sizing 
+                  $('#myfirstchart').css("width",d.length*150+'px');
+
+                  var morrisArea = new Morris.Area({
+                    // ID of the element in which to draw the chart.
+                    element: 'myfirstchart',
+                    // Chart data records -- each entry in this array corresponds to a point on
+                    // the chart.
+                    data: d,
+                    // The name of the data record attribute that contains x-values.
+                    xkey: 'date',
+                    // A list of names of data record attributes that contain y-values.
+                    ykeys: ['metric1'],
+                    // Labels for the ykeys -- will be displayed when you hover over the
+                    // chart.
+                    xLabels: "day",
+                    ymax: 100,
+                    hideHover: true,
+                    // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
+                    parseTime: true,
+                    postUnits: '%',
+                    fillOpacity: 0.5,
+                    dateFormat: function (x) {
+                      var d = new Date(x);
+
+                      var yyyy = d.getFullYear().toString();
+                      var mm = (d.getMonth()+1).toString(); // getMonth() is zero-based
+                      var dd  = d.getDate().toString();
+                      var hh = d.getHours().toString();                                 
+                      var mi = d.getMinutes().toString();
+
+                      return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]) + ' ' + (hh[1]?hh:"0"+hh[0]) + ':' + (mi[1]?mi:"0"+mi[0]);
+                    },
+                    labels: ['metric2']
+                  });
+                });
+              }
+              else
+              {
+                alert("File upload did not work. Please contact support.");
+              }
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

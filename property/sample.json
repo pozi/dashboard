@@ -1,0 +1,17 @@
+{
+	"origin":"PoziConnect",
+	"site":"Campaspe",
+	"data":
+	[
+		{
+			"date":"2014-04-09 11:42:12",
+			"metric1":"75",
+			"metric2":"11647"
+		},
+		{
+			"date":"2014-05-05 14:34:02",
+			"metric1":"80",
+			"metric2":"12339"
+		}
+	]
+}
