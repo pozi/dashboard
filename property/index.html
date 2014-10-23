@@ -46,6 +46,7 @@
         position: absolute;
         right: 0;
         top: 0;
+        height: 500px;
         z-index: 1;
         padding: 0;
         margin: 0;
@@ -77,8 +78,6 @@
       <!-- A FileDrop area. Can contain any text or elements, or be empty.
            Can be of any HTML tag too, not necessary fieldset. -->
       <fieldset id="zone">
-        <h2>Drop your statistics file (.json)</h2>
-        <p>Or click here to <em>Browse</em>..</p>
       </fieldset>
     </div>
 
@@ -187,6 +186,13 @@
       }
 
       $(function () {
+        // Message depending on browser
+        var browserDiffedMsg = '<h2>Drop your statistics file (.json)</h2><p>Or click here to <em>Browse</em>..</p>';
+        if (!window.FileReader)
+        {
+          browserDiffedMsg = '<h2>Click here to <em>Browse</em> to your statistics file (.json)</h2>';
+        }
+        $('#zone').append(browserDiffedMsg);
 
         // Tell FileDrop we can deal with iframe uploads using this URL:
         var options = {iframe: {url: '../FileDrop/upload.php'}};
@@ -214,11 +220,6 @@
         zone.event('iframeDone', function (xhr) {
           //alert('Done uploading via <iframe>, response:\n\n' + xhr.responseText);
           processUploadResponse(xhr.responseText);
-        });
-
-        // A bit of sugar - toggling multiple selection:
-        fd.addEvent(fd.byID('multiple'), 'change', function (e) {
-          zone.multiple(e.currentTarget || e.srcElement.checked);
         });
 
         var processUploadResponse = function(xhrresponsetext){

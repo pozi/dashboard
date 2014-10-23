@@ -45,6 +45,7 @@ if (isset($json_data->features))
 else
 {
   // The file is incorrectly formatted
+  $lga_code = 'xxx';
 }
 
 // Capturing date/time for unique filename
