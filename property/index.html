@@ -16,22 +16,70 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Generic page styles -->
-    <link rel="stylesheet" href="../jquery-file-upload/css/style.css">
-    <link rel="stylesheet" href="../jquery-file-upload/css/jquery.fileupload.css">
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <link rel="stylesheet" href="../morris.js-0.4.3/morris.css">
     <style>
       body {
         padding:20px;
+      }
+
+      /***
+        Styles below are only required if you're using <iframe> fallback in
+        addition to HTML5 drag & drop (only working in Firefox/Chrome).
+       ***/
+
+      /* Essential FileDrop zone element configuration: */
+      .fd-zone {
+        position: relative;
+        overflow: hidden;
+        /* The following are not required but create a pretty box: */
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        text-align: center;
+        border:2px dashed;
+      }
+
+      /* Hides <input type="file"> while simulating "Browse" button: */
+      .fd-file {
+        opacity: 0;
+        font-size: 118px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        filter: alpha(opacity=0);
+        font-family: sans-serif;
+      }
+
+      /* Provides visible feedback when use drags a file over the drop zone: */
+      .fd-zone.over { border-color: green; background: #509950;}
+
+      .well{
+        margin: 10px;
       }
     </style>
   </head>
   <body>
     <div>
-      <h1>Property Health Check</h1>
+      <h1>
+        <div>
+          <div style="text-align:center;">Property Health Check </div>
+          <div style="" id="id_site"></div>
+        </div>
+      </h1>
     </div>
+    <br>
+
     <div id="step1">
-      <h2 >Upload your statistics file (.json)</h2>
-      <input id="fileupload" type="file" name="files[]" data-url="../jquery-file-upload/server/php/index.php">
+      <!-- A FileDrop area. Can contain any text or elements, or be empty.
+           Can be of any HTML tag too, not necessary fieldset. -->
+      <fieldset id="zone">
+        <h2>Drop your statistics file (.json)</h2>
+        <p>Or click here to <em>Browse</em>..</p>
+      </fieldset>
     </div>
 
     <div id="step2" class="hidden">
@@ -39,40 +87,52 @@
       <div class="container" style="padding-top:20px;font-size:12px;">
         <h3>Current status</h3>
         <div class="row text-center">
-          <div class="well col-xs-3">
-            <p> Last execution<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
-               <span id="date_current" style="font-size:24px;">n/a</span><br>
-               
-            </p>
+          <div class="col-xs-3">
+            <div class="well">
+              <p> Last executed on<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+                 <span id="date_current" style="font-size:24px;">n/a</span><br>
+              </p>
+            </div>
           </div>
-          <div class="col-xs-1"></div>
-          <div class="well col-xs-4">
-            <p> Match rate<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
-               <span id="metric1_current" style="font-size:48px;">n/a</span><br>
-               %
-            </p>
+          <div class="col-xs-3">
+            <div class="well">
+              <p> Council properties not in Vicmap<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+                 <span id="metric1_current" style="font-size:48px;">n/a</span><br>
+                 records
+              </p>
+            </div>
           </div>
-          <div class="col-xs-1"></div>
-          <div class="well col-xs-3">
-            <p> Number properties matched<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
-               <span id="metric2_current" style="font-size:48px;">n/a</span><br>
-               records
-            </p>
+          <div class="col-xs-3">
+            <div class="well">
+              <p> Vicmap parcels without propnum<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+                 <span id="metric2_current" style="font-size:48px;">n/a</span><br>
+                 records
+              </p>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <div class="well">
+              <p> Vicmap propnum not in Council<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
+                 <span id="metric3_current" style="font-size:48px;">n/a</span><br>
+                 records
+              </p>
+            </div>
           </div>
         </div>
 
         <h3>History</h3>
         <div class="row text-center">
-          <div class="well col-xs-3">
-            <p> Number of executions<span class="glyphicon glyphicon-question-sign pull-right"></span><br>
-               <span id="metric1_history" style="font-size:48px;">n/a</span><br>
-               
-            </p>
+          <div class="col-xs-6">
+            <div class="well">
+              <p style="font-size:18px;text-align:center;">Property match rate</p>
+              <div id="chart1" style="height: 250px;"></div>
+            </div>
           </div>
-          <div class="col-xs-1"></div>
-          <div class="well col-xs-4">
-            <p style="font-size:18px;text-align:center;">Match rate</p>
-            <div id="myfirstchart" style="height: 250px;"></div>
+          <div class="col-xs-6">
+            <div class="well">
+              <p style="font-size:18px;text-align:center;">Address match rate</p>
+              <div id="chart2" style="height: 250px;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -81,17 +141,15 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../jquery-1.11.1.min.js"></script>
 
-    <!-- File upload plugin specific stuff -->
-    <script src="../jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
-    <script src="../jquery-file-upload/js/jquery.iframe-transport.js"></script>
-    <script src="../jquery-file-upload/js/jquery.fileupload.js"></script>
-
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bootstrap-3.1.1/js/bootstrap.min.js"></script>
 
     <!-- Vix library -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+    <script src="../morris.js-0.4.3/morris.min.js"></script>
+
+    <!-- Filedrop library to manage drag and drop -->
+    <script type="text/javascript" src="../FileDrop/filedrop.js"></script>
 
     <script>
       // Helper class for number formatting
@@ -99,92 +157,193 @@
           return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
 
-      $(function () {
-        $('#fileupload').fileupload({
-          dataType: 'json',
-          autoUpload: true,
-          acceptFileTypes: /(\.|\/)(json)$/i,
-          maxFileSize: 100000, // 100 kB
-          disableImageResize: true,
-          done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-              if (file.url)
-              {
-                // Layout update on successful upload
-                $('<p/>').text('File successfully uploaded.').appendTo($('#step1'));
-                $('#step1').hide();
-                $('#step2').removeClass("hidden");
+      // IE8 and below
+      if(!Array.prototype.filter){
 
-                // Extraction of the content just uploaded
-                $.getJSON(file.url,function(json){
-                  var d = json.data;
-                  // Do something with the JSON content
-                  // Make an array of object ordered by date
-
-                  function compare(a,b) {
-                    var a_date = new Date(a.date);
-                    var b_date = new Date(b.date);
-
-                    if (a_date < b_date)
-                      return -1;
-                    else 
-                      return 1;
+          Array.prototype.filter= function(fun, scope){
+              var T= this, A= [], i= 0, itm, L= T.length;
+              if(typeof fun== 'function'){
+                  while(i<L){
+                      if(i in T){
+                          itm= T[i];
+                          if(fun.call(scope, itm, i, T)) A[A.length]= itm;
+                      }
+                      ++i;
                   }
-
-                  // Sorting the elements in the array by date
-                  d.sort(compare);
-                  console.log(d);
-
-                  // The last element contains the current metrics
-                  $('#date_current').html(d[d.length-1].date);
-                  $('#metric1_current').html(d[d.length-1].metric1);
-                  $('#metric2_current').html(numberWithCommas(d[d.length-1].metric2));
-                  $('#metric1_history').html(d.length);
-                  // Massage the JSON data to feed into the Morris data property
-                  // Sizing 
-                  $('#myfirstchart').css("width",d.length*150+'px');
-
-                  var morrisArea = new Morris.Area({
-                    // ID of the element in which to draw the chart.
-                    element: 'myfirstchart',
-                    // Chart data records -- each entry in this array corresponds to a point on
-                    // the chart.
-                    data: d,
-                    // The name of the data record attribute that contains x-values.
-                    xkey: 'date',
-                    // A list of names of data record attributes that contain y-values.
-                    ykeys: ['metric1'],
-                    // Labels for the ykeys -- will be displayed when you hover over the
-                    // chart.
-                    xLabels: "day",
-                    ymax: 100,
-                    hideHover: true,
-                    // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
-                    parseTime: true,
-                    postUnits: '%',
-                    fillOpacity: 0.5,
-                    dateFormat: function (x) {
-                      var d = new Date(x);
-
-                      var yyyy = d.getFullYear().toString();
-                      var mm = (d.getMonth()+1).toString(); // getMonth() is zero-based
-                      var dd  = d.getDate().toString();
-                      var hh = d.getHours().toString();                                 
-                      var mi = d.getMinutes().toString();
-
-                      return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]) + ' ' + (hh[1]?hh:"0"+hh[0]) + ':' + (mi[1]?mi:"0"+mi[0]);
-                    },
-                    labels: ['metric2']
-                  });
-                });
               }
-              else
-              {
-                alert("File upload did not work. Please contact support.");
-              }
+              return A;
+          }
+      }
+
+      // Comparison functions for dates
+      function compareDateStr(a,b) {
+        var a_date = new Date(a);
+        var b_date = new Date(b);
+
+        if (a_date < b_date)
+          return -1;
+        else 
+          return 1;
+      }
+
+      $(function () {
+
+        // Tell FileDrop we can deal with iframe uploads using this URL:
+        var options = {iframe: {url: '../FileDrop/upload.php'}};
+        // Attach FileDrop to an area ('zone' is an ID but you can also give a DOM node):
+        var zone = new FileDrop('zone', options);
+
+        // Do something when a user chooses or drops a file:
+        zone.event('send', function (files) {
+          // Depending on browser support files (FileList) might contain multiple items.
+          files.each(function (file) {
+            // React on successful AJAX upload:
+            file.event('done', function (xhr) {
+              // 'this' here points to fd.File instance that has triggered the event.
+              //alert('Done uploading ' + this.name + ', response:\n\n' + xhr.responseText);
+              processUploadResponse(xhr.responseText);
+            });
+
+            // Send the file:
+            file.sendTo('../FileDrop/upload.php');
+          });
+        });
+
+        // React on successful iframe fallback upload (this is separate mechanism
+        // from proper AJAX upload hence another handler):
+        zone.event('iframeDone', function (xhr) {
+          //alert('Done uploading via <iframe>, response:\n\n' + xhr.responseText);
+          processUploadResponse(xhr.responseText);
+        });
+
+        // A bit of sugar - toggling multiple selection:
+        fd.addEvent(fd.byID('multiple'), 'change', function (e) {
+          zone.multiple(e.currentTarget || e.srcElement.checked);
+        });
+
+        var processUploadResponse = function(xhrresponsetext){
+          var file = JSON.parse(xhrresponsetext);
+          if (file.url)
+          {
+            // Layout update on successful upload
+            $('<p/>').text('File successfully uploaded.').appendTo($('#step1'));
+            $('#step1').hide();
+            $('#step2').removeClass("hidden");
+
+            // Extraction of the content just uploaded
+            $.getJSON(file.url,function(json){
+              // Do something with the JSON content
+              var jf = json.features;
+
+              // Get distinct dates:
+              var dt = $.map(jf,function(v,k){
+                return v.properties.stat_date;
+              }).filter(function(itm,i,a){
+                return i==a.indexOf(itm);
+              }).sort(compareDateStr);
+
+              // Remapped data array (grouped by date)
+              var d = [];
+              for (var i = 0; i < dt.length ; i++) {
+                var d_obj = {'date': dt[i].replace(/\//g,'-').replace('00:00:00','')};
+                // Direct properties
+                for (var k = 0; k < jf.length; k++)
+                {
+                  if (jf[k].properties.stat_date == dt[i])
+                  {
+                    d_obj[jf[k].properties.stat_metric]=jf[k].properties.stat_value;
+                  }
+                }
+                // Calculated properties
+                d_obj['match_rate_property'] = Math.round(d_obj['council_properties_in_vicmap']/d_obj['council_properties']*100,1);
+                d_obj['match_rate_address'] = Math.round(d_obj['council_address_in_vicmap']/d_obj['council_properties']*100,1);
+                d.push(d_obj);
+              };
+              d.reverse();
+              console.log(d);
+
+              // Title update
+              // TODO
+              //$('#id_site').html(' - '+file.name);
+
+              // Current section
+              $('#date_current').html(d[d.length-1].date);
+              $('#metric1_current').html(numberWithCommas(d[d.length-1].council_properties_not_in_vicmap));
+              $('#metric2_current').html(numberWithCommas(d[d.length-1].vicmap_parcels_no_propnum));
+              $('#metric3_current').html(numberWithCommas(d[d.length-1].vicmap_propnum_not_in_council));
+
+              // Sizing 
+              $('#chart1').css("width",d.length*150+'px');
+              $('#chart2').css("width",d.length*150+'px');
+
+              var morrisArea = new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'chart1',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: d,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'date',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['match_rate_property'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                xLabels: "day",
+                ymax: 100,
+                hideHover: true,
+                // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
+                parseTime: true,
+                postUnits: '%',
+                fillOpacity: 0.5,
+                dateFormat: function (x) {
+                  var d = new Date(x);
+
+                  var yyyy = d.getFullYear().toString();
+                  var mm = (d.getMonth()+1).toString(); // getMonth() is zero-based
+                  var dd  = d.getDate().toString();
+
+                  return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]);
+                },
+                labels: ['Rate']
+              });
+
+              var morrisArea = new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'chart2',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: d,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'date',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['match_rate_address'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                xLabels: "day",
+                ymax: 100,
+                hideHover: true,
+                // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
+                parseTime: true,
+                postUnits: '%',
+                fillOpacity: 0.5,
+                dateFormat: function (x) {
+                  var d = new Date(x);
+
+                  var yyyy = d.getFullYear().toString();
+                  var mm = (d.getMonth()+1).toString(); // getMonth() is zero-based
+                  var dd  = d.getDate().toString();
+
+                  return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]);
+                },
+                labels: ['Rate']
+              });
             });
           }
-        });
+          else
+          {
+            alert("File upload did not work. Please contact support.");
+          }
+        };
       });
     </script>
   </body>
