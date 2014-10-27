@@ -37,14 +37,21 @@ if (!empty($_FILES['fd-file']) and is_uploaded_file($_FILES['fd-file']['tmp_name
 
 // Filename depends on its content
 $json_data = json_decode($data);
+
 if (isset($json_data->features))
 {
-  // TODO: use the LGA code to prefix the filename (will need to loop on all features)
-  $lga_code = '123';
+  // Use the LGA code to prefix the filename (will need to loop on all features)
+  foreach ($json_data->features as $feat) {
+    if ($feat->properties->stat_metric == "lga_code")
+    {
+      $lga_code = $feat->properties->stat_value;
+      break;
+    }
+  }
 }
 else
 {
-  // The file is incorrectly formatted
+  // Should not happen: the file is incorrectly formatted
   $lga_code = 'xxx';
 }
 
@@ -52,7 +59,7 @@ else
 $ts = date('Ymd-Hms');
 
 // Filename
-$filename = $ts.'-'.$lga_code.'.json';
+$filename = $lga_code.'-'.$ts.'.json';
 
 // Persisting the uploaded file
 file_put_contents('../uploads/'.$filename, $data);
@@ -60,7 +67,7 @@ file_put_contents('../uploads/'.$filename, $data);
 // Web accessible file address
 $url = "http://" . $_SERVER['SERVER_NAME'] . str_replace( 'FileDrop/'.basename($_SERVER['PHP_SELF']) , '', $_SERVER['REQUEST_URI'] ).'uploads/'.$filename;
 
-$output = '{"url":"'.$url.'"}';
+$output = '{"url":"'.$url.'","lga_code":"'.$lga_code.'"}';
 
 if ($callback) {
   // Callback function given - the caller loads response into a hidden <iframe> so
