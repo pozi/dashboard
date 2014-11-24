@@ -4,7 +4,8 @@
 
     // Variables for HTML2PDF service request
     $path_json = "http://" . $_SERVER['SERVER_NAME'] .'/property/?file='.$_REQUEST['file'];
-    $pvars   = array('url' => $path_json, 'viewport_size' => '1280x800');
+    echo $path_json;
+    $pvars   = array('url' => $path_json, 'viewport_size' => '1024x800');
     $timeout = 30;
 
     // cURL configuration
