@@ -3,8 +3,8 @@
     include 'credentials.php';
 
     // Variables for HTML2PDF service request
-    $path_json = "http://" . $_SERVER['SERVER_NAME'] . str_replace( basename($_SERVER['PHP_SELF']) , '', $_SERVER['REQUEST_URI'] ).'/../uploads/'.$_SERVER['filename'].'.json';
-    $pvars   = array('url' => $path_json);
+    $path_json = "http://" . $_SERVER['SERVER_NAME'] .'/property/?file='.$_REQUEST['file'];
+    $pvars   = array('url' => $path_json, 'viewport_size' => '1280x800');
     $timeout = 30;
 
     // cURL configuration
@@ -22,7 +22,7 @@
     // We'll be outputting a PDF
     header('Content-type: application/pdf');
     // It will be called downloaded.pdf
-    header('Content-Disposition: attachment; filename="'.$_SERVER['filename'].'.pdf"');
+    header('Content-Disposition: attachment; filename="'.$_REQUEST['file'].'.pdf"');
     // Content length
     header('Content-Length: '.strlen($out));
 
