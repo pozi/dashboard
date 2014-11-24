@@ -18,10 +18,6 @@
     <!-- Generic page styles -->
     <link rel="stylesheet" href="../morris.js-0.4.3/morris.css">
     <style>
-      body {
-        padding:20px;
-      }
-
       /***
         Styles below are only required if you're using <iframe> fallback in
         addition to HTML5 drag & drop (only working in Firefox/Chrome).
@@ -66,17 +62,21 @@
         margin:0;
       }
 
-      #logo {
-        position: absolute;
-        top: 10px;left: 10px;
-      }
     </style>
   </head>
   <body>
-    <div>
-      <div id="logo">
-        <img src="../img/poziconnect-logo.png" style="width:300px;">
+    <!-- Bootstrap navbar -->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid" style="background-color:#2F4354;">
+        <div class="navbar-header" id="logo" style="position: relative;top: 5px;left: 5px;padding:5px;">
+          <a class="navbar-brand" href="#" style="padding:0px;">
+            <img src="../img/poziconnect-logo.png" style="height:40px;">
+          </a>
+        </div>
       </div>
+    </nav>
+
+    <div>
       <h1>
         <div style="text-align:center;">
           <div>Property Health Check </div>
