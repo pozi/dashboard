@@ -409,7 +409,7 @@
             $('<p/>').text('File successfully uploaded.').appendTo($('#step1'));
 
             // Adding the PDF link
-            $('#pdf_link').attr('href','ws/createpdf.php?file='+file.url.split('/').pop().split('\.')[0]);
+            $('#pdf_link').attr('href','../ws/createpdf.php?file='+file.url.split('/').pop().split('\.')[0]);
 
             $('#step1').hide();
             $('#step2').removeClass("hidden");
