@@ -399,9 +399,20 @@
                     d_obj[jf[k].properties.stat_metric]=jf[k].properties.stat_value;
                   }
                 }
+
                 // Calculated properties
-                d_obj['match_rate_property'] = Math.round(d_obj['council_properties_in_vicmap']/d_obj['council_properties']*100*10)/10;
-                d_obj['match_rate_address'] = Math.round(d_obj['council_address_in_vicmap']/d_obj['council_properties']*100*10)/10;
+                if (d_obj['council_properties'] && d_obj['council_properties'] != 0)
+                {
+                  if (d_obj['council_properties_in_vicmap'])
+                  {
+                    d_obj['match_rate_property'] = Math.round(d_obj['council_properties_in_vicmap']/d_obj['council_properties']*100*10)/10;
+                  }
+                  if (d_obj['council_address_in_vicmap'])
+                  {
+                    d_obj['match_rate_address'] = Math.round(d_obj['council_address_in_vicmap']/d_obj['council_properties']*100*10)/10;                    
+                  }
+                }
+
                 d.push(d_obj);
               };
               //d.reverse();
@@ -431,7 +442,9 @@
                 element: 'chart1',
                 // Chart data records -- each entry in this array corresponds to a point on
                 // the chart.
-                data: d,
+                data: $.grep(d, function( n, i ) {
+                  return ( !!n['match_rate_property'] );
+                }),
                 // The name of the data record attribute that contains x-values.
                 xkey: 'date',
                 // A list of names of data record attributes that contain y-values.
@@ -441,6 +454,7 @@
                 xLabels: "day",
                 ymin: 90,
                 ymax: 100,
+                smooth: false,
                 hideHover: true,
                 // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
                 parseTime: true,
@@ -464,7 +478,9 @@
                 element: 'chart2',
                 // Chart data records -- each entry in this array corresponds to a point on
                 // the chart.
-                data: d,
+                data: $.grep(d, function( n, i ) {
+                  return ( !!n['match_rate_address'] );
+                }),
                 // The name of the data record attribute that contains x-values.
                 xkey: 'date',
                 // A list of names of data record attributes that contain y-values.
@@ -474,6 +490,7 @@
                 xLabels: "day",
                 ymin: 90,
                 ymax: 100,
+                smooth: false,
                 hideHover: true,
                 // Set to false to skip time/date parsing for X values, instead treating them as an equally-spaced series.
                 parseTime: true,
