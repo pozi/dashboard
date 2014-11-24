@@ -5,14 +5,14 @@
     // Variables for HTML2PDF service request
     $path_json = "http://" . $_SERVER['SERVER_NAME'] .'/property/?file='.$_REQUEST['file'];
     echo $path_json;
-    $pvars   = array('url' => $path_json, 'viewport_size' => '1024x800');
+    $pvars   = array('url' => $path_json, 'viewport_size' => '1280x800');
     $timeout = 30;
 
     // cURL configuration
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'https://htmlpdfapi.com/api/v1/pdf');
     curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Token ' . $api_token));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authentication: Token ' . $api_token));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
     $out = curl_exec($curl);
