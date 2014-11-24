@@ -62,6 +62,11 @@
         margin:0;
       }
 
+      #pdf_download {
+        position:absolute;
+        top:5px;right:5px;
+      }
+
     </style>
   </head>
   <body>
@@ -94,6 +99,12 @@
     </div>
 
     <div id="step2" class="hidden">
+      <div id="pdf_download">
+        <a id="pdf_link" href="#">
+          <img src="../img/pdf-icon.png" style="height:50px;">
+        </a>
+      </div>
+
       <!-- h2>Explore your statistics visually</h2 -->
       <div class="container" style="padding-top:20px;font-size:12px;">
         <h3>Status</h3>
@@ -396,6 +407,10 @@
           {
             // Layout update on successful upload
             $('<p/>').text('File successfully uploaded.').appendTo($('#step1'));
+
+            // Adding the PDF link
+            $('#pdf_link').attr('href','ws/createpdf.php?file='+file.url.split('/').pop().split('\.')[0]);
+
             $('#step1').hide();
             $('#step2').removeClass("hidden");
 
