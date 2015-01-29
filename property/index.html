@@ -473,10 +473,11 @@
               });
 
               // Sizing 
-              var ww = $(window).width();
-              if (ww == 0) {ww = 1280;} 
-              $('#chart1').css("width",Math.min(d.length*150,$('#chart1').parent().width())+'px');
-              $('#chart2').css("width",Math.min(d.length*150,$('#chart2').parent().width())+'px');
+              var ww = $(window).width(), cw = $('#chart1').parent().width();
+              // Window width = 0 in printing mode
+              if (ww == 0) {cw = 500;}
+              $('#chart1').css("width",Math.min(d.length*150,cw)+'px');
+              $('#chart2').css("width",Math.min(d.length*150,cw)+'px');
 
               var morrisArea = new Morris.Area({
                 // ID of the element in which to draw the chart.
