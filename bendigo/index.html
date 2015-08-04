@@ -52,7 +52,7 @@
           <div class='col-sm-12'>
             <label>App</label>
             <br>
-            <a href="http://bendigo.pozi.com/m/drainageinspection">Link</a>
+            <a target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Link</a>
           </div>
         </div>
         <div class="row">
@@ -80,7 +80,47 @@
             </div>
             <div class='col-sm-4' style="margin:32px 0px;">
               <a target="_blank" href="" id="diLink">Download</a>
-            </div>            
+            </div>
+        </div>
+        <hr>
+        <h2>
+          <div style="text-align:center;">
+            <div>Slashing</div>
+          </div>
+        </h2>
+        <div class="row">
+          <div class='col-sm-12'>
+            <label>App</label>
+            <br>
+            <a target="_blank" href="http://bendigo.pozi.com/m/slashing">Link</a>
+          </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <label>From</label>
+                    <div class='input-group date' id='datetimepicker3'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <label>To</label>
+                    <div class='input-group date' id='datetimepicker4'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4' style="margin:32px 0px;">
+              <a target="_blank" href="" id="siLink">Download</a>
+            </div>
         </div>
     </div>
 
@@ -99,6 +139,10 @@
           var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
           $('#diLink').prop('href',diBaseURL);
 
+          var siBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_slashing_complete&forcebasicauth=true&outputformat=csv&";
+          $('#siLink').prop('href',siBaseURL);
+
+          // Date picker for drainage inspections app
           $('#datetimepicker1').datetimepicker({
             format: 'DD/MM/YYYY'
           }).on('dp.change',function(e){
@@ -112,6 +156,22 @@
             //
             d2=e.date.format('YYYYMMDD');
             $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+          });
+
+          // Date pickers for slashing app
+          $('#datetimepicker3').datetimepicker({
+            format: 'DD/MM/YYYY'
+          }).on('dp.change',function(e){
+            //
+            d1=e.date.format('YYYYMMDD');
+            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+          });
+          $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+          }).on('dp.change',function(e){
+            //
+            d2=e.date.format('YYYYMMDD');
+            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
       });
   	</script>
