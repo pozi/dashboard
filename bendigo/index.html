@@ -165,6 +165,46 @@
               <a target="_blank" href="" id="siLink">Download</a>
             </div>
         </div>
+        <hr>
+        <h2>
+          <div style="text-align:center;">
+            <div>Grading</div>
+          </div>
+        </h2>
+        <div class="row">
+          <div class='col-sm-12'>
+            <label>App</label>
+            <br>
+            <a target="_blank" href="http://bendigo.pozi.com/m/grading">Link</a>
+          </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <label>From</label>
+                    <div class='input-group date' id='datetimepicker5'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <label>To</label>
+                    <div class='input-group date' id='datetimepicker6'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4' style="margin:32px 0px;">
+              <a target="_blank" href="" id="giLink">Download</a>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -184,6 +224,9 @@
 
           var siBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_slashing_complete&forcebasicauth=true&outputformat=csv&";
           $('#siLink').prop('href',siBaseURL);
+
+          var giBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_grading_complete&forcebasicauth=true&outputformat=csv&";
+          $('#giLink').prop('href',giBaseURL);
 
           // Date picker for drainage inspections app
           $('#datetimepicker1').datetimepicker({
@@ -215,6 +258,22 @@
             //
             d2=e.date.format('YYYYMMDD');
             $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+          });
+
+          // Date pickers for grading app
+          $('#datetimepicker5').datetimepicker({
+            format: 'DD/MM/YYYY'
+          }).on('dp.change',function(e){
+            //
+            d1=e.date.format('YYYYMMDD');
+            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+          });
+          $('#datetimepicker6').datetimepicker({
+            format: 'DD/MM/YYYY'
+          }).on('dp.change',function(e){
+            //
+            d2=e.date.format('YYYYMMDD');
+            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
       });
   	</script>
