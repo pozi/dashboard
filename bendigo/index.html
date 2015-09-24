@@ -20,6 +20,27 @@
       .row{
         padding-top: 20px;
       }
+      .title {
+        text-align:left;
+      }
+      .top-buffer { 
+        margin-top:4px;
+      }
+      .myHeader {
+        font-size: 30px;
+        color: white;
+        text-align: center;
+        margin-top: 8px;
+      }
+      .colorOrange {
+        background-color: orange;
+        border-color: orange;
+      }
+      .colorDarkGreen {
+        background-color: darkgreen;
+        border-color: darkgreen;
+      }
+
     </style>
   </head>
   <body>
@@ -31,75 +52,40 @@
             <img src="../img/pozi-logo.png" style="height:40px;">
           </a>
         </div>
+        <div class="myHeader">Bendigo Dashboard</div>
       </div>
     </nav>
 
-    <div>
-      <h1>
-        <div style="text-align:center;">
-          <div>Bendigo dashboard</div>
-        </div>
-      </h1>
-    </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <h2>
-          <div style="text-align:center;">
-            <div>Defects</div>
+          <div class="title">
+            <h1>Apps</h1>
           </div>
         </h2>
-        <div class="row">
-          <div class='col-sm-4'>
-            <label>App</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/m/defect">Link</a>
-          </div>
-          <div class='col-sm-8'>
-            <label>Download</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">CSV</a>
-          </div>
-        </div>
+
+        <a type="button" class="btn btn-danger top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/defect">Defects</a>
+       
+        <a type="button" class="btn btn-success top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/treeworks">Treeworks</a>
+        
+        <a type="button" class="btn btn-primary top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Drainage Inspections</a>
+      
+        <a type="button" class="btn btn-primary top-buffer btn-lg colorDarkGreen" target="_blank" href="http://bendigo.pozi.com/m/slashing">Slashing</a>
+        
+        <a type="button" class="btn btn-primary top-buffer btn-lg colorOrange" target="_blank" href="http://bendigo.pozi.com/m/grading">Grading</a>
+
+
+        <br/><br/><br/>
         <hr>
 
         <h2>
-          <div style="text-align:center;">
-            <div>Tree defects &amp; inspections</div>
+          <div class="title">
+            <h1>Download</h1>
           </div>
         </h2>
-        <div class="row">
-          <div class='col-sm-4'>
-            <label>App</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/m/treeworks">Link</a>
-          </div>
-          <div class='col-sm-4'>
-            <label>Download defects</label>
-            <br>
-            <a href="#">UNDER CONSTRUCTION</a>
-          </div>
-          <div class='col-sm-4'>
-            <label>Download inspections</label>
-            <br>
-            <a href="#">UNDER CONSTRUCTION</a>
-          </div>
-        </div>
-        <hr>
 
-        <h2>
-          <div style="text-align:center;">
-            <div>Drainage inspections</div>
-          </div>
-        </h2>
         <div class="row">
-          <div class='col-sm-12'>
-            <label>App</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Link</a>
-          </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-4'>
+            <div class='col-sm-3'>
                 <div class="form-group">
                     <label>From</label>
                     <div class='input-group date' id='datetimepicker1'>
@@ -110,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class='col-sm-4'>
+            <div class='col-sm-3'>
                 <div class="form-group">
                     <label>To</label>
                     <div class='input-group date' id='datetimepicker2'>
@@ -121,90 +107,15 @@
                     </div>
                 </div>
             </div>
-            <div class='col-sm-4' style="margin:32px 0px;">
-              <a target="_blank" href="" id="diLink">Download</a>
-            </div>
         </div>
-        <hr>
-        <h2>
-          <div style="text-align:center;">
-            <div>Slashing</div>
-          </div>
-        </h2>
-        <div class="row">
-          <div class='col-sm-12'>
-            <label>App</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/m/slashing">Link</a>
-          </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-4'>
-                <div class="form-group">
-                    <label>From</label>
-                    <div class='input-group date' id='datetimepicker3'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class='col-sm-4'>
-                <div class="form-group">
-                    <label>To</label>
-                    <div class='input-group date' id='datetimepicker4'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class='col-sm-4' style="margin:32px 0px;">
-              <a target="_blank" href="" id="siLink">Download</a>
-            </div>
-        </div>
-        <hr>
-        <h2>
-          <div style="text-align:center;">
-            <div>Grading</div>
-          </div>
-        </h2>
-        <div class="row">
-          <div class='col-sm-12'>
-            <label>App</label>
-            <br>
-            <a target="_blank" href="http://bendigo.pozi.com/m/grading">Link</a>
-          </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-4'>
-                <div class="form-group">
-                    <label>From</label>
-                    <div class='input-group date' id='datetimepicker5'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class='col-sm-4'>
-                <div class="form-group">
-                    <label>To</label>
-                    <div class='input-group date' id='datetimepicker6'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class='col-sm-4' style="margin:32px 0px;">
-              <a target="_blank" href="" id="giLink">Download</a>
-            </div>
-        </div>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>    
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Treeworks Inspections</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tdLink">Treeworks Defects</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drainage inspections</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="siLink">Slashing</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="giLink">Grading</a>
+
+
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -219,6 +130,12 @@
   	<script>
       var d1,d2;
       $(function () {
+          var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
+          $('#tiLink').prop('href',diBaseURL);
+
+          var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_defect_not_completed&forcebasicauth=true&outputformat=csv&";
+          $('#tdLink').prop('href',diBaseURL);
+
           var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
           $('#diLink').prop('href',diBaseURL);
 
@@ -235,6 +152,10 @@
             //
             d1=e.date.format('YYYYMMDD');
             $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tiLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tdLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
           $('#datetimepicker2').datetimepicker({
             format: 'DD/MM/YYYY'
@@ -242,39 +163,13 @@
             //
             d2=e.date.format('YYYYMMDD');
             $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tiLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tdLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
 
-          // Date pickers for slashing app
-          $('#datetimepicker3').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d1=e.date.format('YYYYMMDD');
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
-          $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d2=e.date.format('YYYYMMDD');
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
 
-          // Date pickers for grading app
-          $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d1=e.date.format('YYYYMMDD');
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
-          $('#datetimepicker6').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d2=e.date.format('YYYYMMDD');
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
       });
   	</script>
   </body>
