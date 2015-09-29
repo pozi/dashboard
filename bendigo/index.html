@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pozi - Download</title>
+    <title>Pozi Dashboard</title>
 
 	  <!-- Latest compiled and minified CSS -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -60,27 +60,22 @@
     <div class="container-fluid">
         <h2>
           <div class="title">
-            <h1>Apps</h1>
+            <h1>Mobile Works Apps</h1>
           </div>
         </h2>
 
         <a type="button" class="btn btn-danger top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/defect">Defects</a>
-       
-        <a type="button" class="btn btn-success top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/treeworks">Treeworks</a>
-        
-        <a type="button" class="btn btn-primary top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Drainage Inspections</a>
-      
+        <a type="button" class="btn btn-success top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/treeworks">Trees</a>
+        <a type="button" class="btn btn-primary top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Drains</a>
         <a type="button" class="btn btn-primary top-buffer btn-lg colorDarkGreen" target="_blank" href="http://bendigo.pozi.com/m/slashing">Slashing</a>
-        
         <a type="button" class="btn btn-primary top-buffer btn-lg colorOrange" target="_blank" href="http://bendigo.pozi.com/m/grading">Grading</a>
-
 
         <br/><br/><br/>
         <hr>
 
         <h2>
           <div class="title">
-            <h1>Download</h1>
+            <h1>Data Download</h1>
           </div>
         </h2>
 
@@ -108,10 +103,12 @@
                 </div>
             </div>
         </div>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>    
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Treeworks Inspections</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tdLink">Treeworks Defects</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drainage inspections</a>
+        
+        <!--<a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>-->
+        
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="deLink">Defects</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Trees</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drains</a>
         <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="siLink">Slashing</a>
         <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="giLink">Grading</a>
 
@@ -130,11 +127,11 @@
   	<script>
       var d1,d2;
       $(function () {
-          var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#tiLink').prop('href',diBaseURL);
+          var deBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_defect_inspection&forcebasicauth=true&outputformat=csv&";
+          $('#deLink').prop('href',deBaseURL);
 
-          var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_defect_not_completed&forcebasicauth=true&outputformat=csv&";
-          $('#tdLink').prop('href',diBaseURL);
+          var tiBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
+          $('#tiLink').prop('href',tiBaseURL);
 
           var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
           $('#diLink').prop('href',diBaseURL);
@@ -151,22 +148,22 @@
           }).on('dp.change',function(e){
             //
             d1=e.date.format('YYYYMMDD');
+            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tdLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
           $('#datetimepicker2').datetimepicker({
             format: 'DD/MM/YYYY'
           }).on('dp.change',function(e){
             //
             d2=e.date.format('YYYYMMDD');
+            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
             $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tdLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
 
 
