@@ -1,0 +1,81 @@
+.row{
+  padding-top: 20px;
+}
+.title {
+  text-align:left;
+}
+.top-buffer { 
+  margin-top:4px;
+}
+.myHeader {
+  font-size: 30px;
+  color: white;
+  text-align: left;
+  margin-left: 60px;
+}
+.btn-orange {
+  background-color: orange;
+  border-color: orange;
+}
+.btn-orange:hover {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+.btn-dark-green {
+  background-color: green;
+  border-color: green;
+}
+.btn-dark-green:hover {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+
+/***
+  Styles below are only required if you're using <iframe> fallback in
+  addition to HTML5 drag & drop (only working in Firefox/Chrome).
+ ***/
+
+/* Essential FileDrop zone element configuration: */
+.fd-zone {
+  position: relative;
+  overflow: hidden;
+  /* The following are not required but create a pretty box: */
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  text-align: center;
+  border:2px dashed;
+}
+
+/* Hides <input type="file"> while simulating "Browse" button: */
+.fd-file {
+  opacity: 0;
+  font-size: 118px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 500px;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  filter: alpha(opacity=0);
+  font-family: sans-serif;
+}
+
+/* Provides visible feedback when use drags a file over the drop zone: */
+.fd-zone.over { border-color: green; background: #509950;}
+
+.well{
+  margin: 10px;
+}
+
+p {
+  margin:0;
+}
+
+#pdf_download {
+  position:absolute;
+  top:5px;right:5px;
+}

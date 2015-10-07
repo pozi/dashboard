@@ -17,57 +17,8 @@
     <![endif]-->
     <!-- Generic page styles -->
     <link rel="stylesheet" href="../morris.js-0.4.3/morris.css">
-    <style>
-      /***
-        Styles below are only required if you're using <iframe> fallback in
-        addition to HTML5 drag & drop (only working in Firefox/Chrome).
-       ***/
+    <link rel="stylesheet" href="../css/main.css"></link>
 
-      /* Essential FileDrop zone element configuration: */
-      .fd-zone {
-        position: relative;
-        overflow: hidden;
-        /* The following are not required but create a pretty box: */
-        width: 500px;
-        height: 500px;
-        margin: 0 auto;
-        text-align: center;
-        border:2px dashed;
-      }
-
-      /* Hides <input type="file"> while simulating "Browse" button: */
-      .fd-file {
-        opacity: 0;
-        font-size: 118px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 500px;
-        z-index: 1;
-        padding: 0;
-        margin: 0;
-        cursor: pointer;
-        filter: alpha(opacity=0);
-        font-family: sans-serif;
-      }
-
-      /* Provides visible feedback when use drags a file over the drop zone: */
-      .fd-zone.over { border-color: green; background: #509950;}
-
-      .well{
-        margin: 10px;
-      }
-
-      p {
-        margin:0;
-      }
-
-      #pdf_download {
-        position:absolute;
-        top:5px;right:5px;
-      }
-
-    </style>
   </head>
   <body>
     <!-- Bootstrap navbar -->
@@ -75,12 +26,14 @@
       <div class="container-fluid" style="background-color:#2F4354;">
         <div class="navbar-header" id="logo" style="position: relative;top: 5px;left: 5px;padding:5px;">
           <a class="navbar-brand" href="#" style="padding:0px;">
-            <img src="../img/poziconnect-logo.png" style="height:40px;">
+            <img src="../img/pozi-logo.png" style="height:40px;">
           </a>
-        </div>
+          <div class="myHeader">Property Health Check</div>
+      </div>
       </div>
     </nav>
 
+    <!--
     <div>
       <h1>
         <div style="text-align:center;">
@@ -89,6 +42,7 @@
         </div>
       </h1>
     </div>
+    -->
     <br>
 
     <div id="step1">
