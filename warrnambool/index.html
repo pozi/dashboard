@@ -53,8 +53,6 @@
         <br/><br/><br/>
         <hr>
 
-
-<!--
         <h2>
           <div class="title">
             <h1>Data Download</h1>
@@ -85,13 +83,12 @@
                 </div>
             </div>
         </div>
-                
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="deLink">Defects</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Trees</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drains</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="siLink">Slashing</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="giLink">Grading</a>
--->
+
+        <!--<a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>-->
+
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="rsaLink">Road Segments Activity</a>
+        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="rspLink">Road Segments Planning</a>
+
 
     </div>
 
@@ -107,20 +104,11 @@
   	<script>
       var d1,d2;
       $(function () {
-          var deBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_cogb_defect_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#deLink').prop('href',deBaseURL);
+          var rsaBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_wsc_road_segments_activity&forcebasicauth=true&outputformat=csv&";
+          $('#rsaLink').prop('href',rsaBaseURL);
 
-          var tiBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#tiLink').prop('href',tiBaseURL);
-
-          var diBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#diLink').prop('href',diBaseURL);
-
-          var siBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_cogb_slashing_complete&forcebasicauth=true&outputformat=csv&";
-          $('#siLink').prop('href',siBaseURL);
-
-          var giBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_cogb_grading_complete&forcebasicauth=true&outputformat=csv&";
-          $('#giLink').prop('href',giBaseURL);
+          var rspBaseURL = "http://s9.pozi.com/geoserver/WARRNAMBOOL/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WARRNAMBOOL:vw_wsc_road_segments_planning&forcebasicauth=true&outputformat=csv&";
+          $('#rspLink').prop('href',rspBaseURL);
 
           // Date picker for drainage inspections app
           $('#datetimepicker1').datetimepicker({
@@ -128,22 +116,16 @@
           }).on('dp.change',function(e){
             //
             d1=e.date.format('YYYYMMDD');
-            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#rsaLink').prop('href',rsaBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#rspLink').prop('href',rspBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
           $('#datetimepicker2').datetimepicker({
             format: 'DD/MM/YYYY'
           }).on('dp.change',function(e){
             //
             d2=e.date.format('YYYYMMDD');
-            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#rsaLink').prop('href',rsaBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
+            $('#rspLink').prop('href',rspBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
           });
 
 
