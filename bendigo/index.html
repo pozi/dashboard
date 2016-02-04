@@ -1,151 +1,148 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pozi Dashboard</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pozi Dashboard</title>
 
-	  <!-- Latest compiled and minified CSS -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
-    <link rel="stylesheet" href="../css/main.css"></link>
-    <link id="favicon" rel="shortcut icon" href="../favicon.png" />
+  <link rel="stylesheet" href="../css/main.css"></link>
+  <link id="favicon" rel="shortcut icon" href="../favicon.png" />
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-  </head>
-  <body>
-    <!-- Bootstrap navbar -->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid" style="background-color:#2F4354;">
-        <div class="navbar-header" id="logo" style="position: relative;top: 5px;left: 5px;padding: 5px;">
-          <a class="navbar-brand" href="#" style="padding:0px; padding-right:20px;">
-            <img src="../img/pozi-logo.png" style="height:40px;">
-          </a>
-          <div class="myHeader">City of Greater Bendigo Dashboard</div>
-        </div>
+</head>
+<body>
+  <!-- Bootstrap navbar -->
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid" style="background-color:#2F4354;">
+      <div class="navbar-header" id="logo" style="position: relative;top: 5px;left: 5px;padding: 5px;">
+        <a class="navbar-brand" href="#" style="padding:0px; padding-right:20px;">
+          <img src="../img/pozi-logo.png" style="height:40px;">
+        </a>
+        <div class="myHeader">City of Greater Bendigo Dashboard</div>
       </div>
-    </nav>
+    </div>
+  </nav>
 
 
-    <div class="container-fluid">
-        <h2>
-          <div class="title">
-            <h1>Mobile Works Apps</h1>
+  <div class="container-fluid">
+    <h1>Mobile Works Apps</h1>
+
+    <a type="button" class="btn btn-danger top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/defect">Defects</a>
+    <a type="button" class="btn btn-success top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/treeworks">Trees</a>
+    <a type="button" class="btn btn-primary top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Drains</a>
+    <a type="button" class="btn btn-primary top-buffer btn-lg btn-dark-green" target="_blank" href="http://bendigo.pozi.com/m/slashing">Slashing</a>
+    <a type="button" class="btn btn-primary top-buffer btn-lg btn-orange" target="_blank" href="http://bendigo.pozi.com/m/grading">Grading</a>
+
+    <br /><br /><hr />
+    <h1>Other Mobile Apps</h1>
+    
+    <br/>
+    <a type="button" class="btn btn-primary btn-lg" target="_blank" href="http://pozi.com/bendigo">Community Compass</a>
+
+    <br /><br /><hr />
+    <h1>Reporting</h1>
+    <h3>Data Download</h3>
+
+    <div class="row rowcustom">
+
+        <div class="form-group">
+          <label>From</label>
+          <div class='input-group date datepickercustom' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
           </div>
-        </h2>
-
-        <a type="button" class="btn btn-danger top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/defect">Defects</a>
-        <a type="button" class="btn btn-success top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/treeworks">Trees</a>
-        <a type="button" class="btn btn-primary top-buffer btn-lg" target="_blank" href="http://bendigo.pozi.com/m/drainageinspection">Drains</a>
-        <a type="button" class="btn btn-primary top-buffer btn-lg btn-dark-green" target="_blank" href="http://bendigo.pozi.com/m/slashing">Slashing</a>
-        <a type="button" class="btn btn-primary top-buffer btn-lg btn-orange" target="_blank" href="http://bendigo.pozi.com/m/grading">Grading</a>
-
-        <br/><br/><br/>
-        <hr>
-
-        <h2>
-          <div class="title">
-            <h1>Data Download</h1>
-          </div>
-        </h2>
-
-        <div class="row">
-            <div class='col-sm-3'>
-                <div class="form-group">
-                    <label>From</label>
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class='col-sm-3'>
-                <div class="form-group">
-                    <label>To</label>
-                    <div class='input-group date' id='datetimepicker2'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!--<a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>        -->
 
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="deLink">Defects</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Trees</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drains</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="siLink">Slashing</a>
-        <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="giLink">Grading</a>
-
+        <div class="form-group">
+          <label>To</label>
+          <div class='input-group date datepickercustom' id='datetimepicker2'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
 
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-  	<!-- Latest compiled and minified JavaScript -->
-  	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- Date picker library -->
-    <!-- Reference: http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-  	<script>
-      var d1,d2;
-      $(function () {
-          var deBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_defect_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#deLink').prop('href',deBaseURL);
+    <!--<a type="button" class="btn btn-default top-buffer" target="_blank" href="http://bendigo.pozi.com/geoserver/BENDIGO/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=BENDIGO%3Avw_cogb_defect_inspection&amp;outputformat=csv">Defects</a>        -->
 
-          var tiBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#tiLink').prop('href',tiBaseURL);
-
-          var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
-          $('#diLink').prop('href',diBaseURL);
-
-          var siBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_slashing_complete&forcebasicauth=true&outputformat=csv&";
-          $('#siLink').prop('href',siBaseURL);
-
-          var giBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_grading_complete&forcebasicauth=true&outputformat=csv&";
-          $('#giLink').prop('href',giBaseURL);
-
-          // Date picker for drainage inspections app
-          $('#datetimepicker1').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d1=e.date.format('YYYYMMDD');
-            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
-          $('#datetimepicker2').datetimepicker({
-            format: 'DD/MM/YYYY'
-          }).on('dp.change',function(e){
-            //
-            d2=e.date.format('YYYYMMDD');
-            $('#deLink').prop('href',deBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#tiLink').prop('href',tiBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#diLink').prop('href',diBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#siLink').prop('href',siBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-            $('#giLink').prop('href',giBaseURL+"viewparams=D1:"+d1+";D2:"+d2);
-          });
+    <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="deLink">Defects</a>
+    <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="tiLink">Trees</a>
+    <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="diLink">Drains</a>
+    <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="siLink">Slashing</a>
+    <a type="button" class="btn btn-default top-buffer" target="_blank" href="" id="giLink">Grading</a>
 
 
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!-- Date picker library -->
+  <!-- Reference: http://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+    var d1, d2;
+    $(function () {
+      var deBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_defect_inspection&forcebasicauth=true&outputformat=csv&";
+      $('#deLink').prop('href', deBaseURL);
+
+      var tiBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_tree_inspection&forcebasicauth=true&outputformat=csv&";
+      $('#tiLink').prop('href', tiBaseURL);
+
+      var diBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_drainage_inspection&forcebasicauth=true&outputformat=csv&";
+      $('#diLink').prop('href', diBaseURL);
+
+      var siBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_slashing_complete&forcebasicauth=true&outputformat=csv&";
+      $('#siLink').prop('href', siBaseURL);
+
+      var giBaseURL = "http://s9.pozi.com/geoserver/BENDIGO/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=BENDIGO:vw_cogb_grading_complete&forcebasicauth=true&outputformat=csv&";
+      $('#giLink').prop('href', giBaseURL);
+
+      // Date picker for drainage inspections app
+      $('#datetimepicker1').datetimepicker({
+        format: 'DD/MM/YYYY'
+      }).on('dp.change', function (e) {
+        //
+        d1 = e.date.format('YYYYMMDD');
+        $('#deLink').prop('href', deBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#tiLink').prop('href', tiBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#diLink').prop('href', diBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#siLink').prop('href', siBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#giLink').prop('href', giBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
       });
-  	</script>
-  </body>
+      $('#datetimepicker2').datetimepicker({
+        format: 'DD/MM/YYYY'
+      }).on('dp.change', function (e) {
+        //
+        d2 = e.date.format('YYYYMMDD');
+        $('#deLink').prop('href', deBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#tiLink').prop('href', tiBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#diLink').prop('href', diBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#siLink').prop('href', siBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+        $('#giLink').prop('href', giBaseURL + "viewparams=D1:" + d1 + ";D2:" + d2);
+      });
+
+
+    });
+  </script>
+</body>
 </html>

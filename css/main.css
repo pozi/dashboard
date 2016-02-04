@@ -30,6 +30,12 @@
   border-color: darkgreen;
 }
 
+.datepickercustom {
+  max-width: 300px;
+}
+.rowcustom {
+  margin: 10px;
+}
 
 /***
   Styles below are only required if you're using <iframe> fallback in
