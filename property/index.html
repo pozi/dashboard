@@ -24,7 +24,7 @@
   <body>
     <!-- Bootstrap navbar -->
     <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid" style="background-color:#2F4354;">
+      <div class="container-fluid" style="background-color:#70925C;">
         <div class="navbar-header" id="logo" style="position: relative;top: 5px;left: 5px;padding:5px;">
           <a class="navbar-brand" href="#" style="padding:0px;">
             <img src="../img/pozi-logo.png" style="height:40px;">
@@ -152,7 +152,7 @@
 
       // Extracting URL parameter in the QueryString object
       var QueryString = function () {
-        // This function is anonymous, is executed immediately and 
+        // This function is anonymous, is executed immediately and
         // the return value is assigned to QueryString!
         var query_string = {};
         var query = window.location.search.substring(1);
@@ -170,7 +170,7 @@
           } else {
             query_string[pair[0]].push(pair[1]);
           }
-        } 
+        }
           return query_string;
       } ();
 
@@ -222,7 +222,7 @@
 
         if (a_date < b_date)
           return -1;
-        else 
+        else
           return 1;
       }
 
@@ -403,7 +403,7 @@
                   }
                   if (d_obj['council_address_in_vicmap'])
                   {
-                    d_obj['match_rate_address'] = Math.round(d_obj['council_address_in_vicmap']/d_obj['council_properties']*100*10)/10;                    
+                    d_obj['match_rate_address'] = Math.round(d_obj['council_address_in_vicmap']/d_obj['council_properties']*100*10)/10;
                   }
                 }
 
@@ -442,7 +442,7 @@
                 c1.empty();
                 c2.empty();
 
-                // Sizing 
+                // Sizing
                 var ww = $(window).width(), cw = c1.parent().width();
                 // Window width = 0 in printing mode
                 if (ww == 0) {cw = 500;}
