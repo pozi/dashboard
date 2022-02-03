@@ -65,7 +65,7 @@ $filename = $lga_code.'-'.$ts.'.json';
 file_put_contents('../uploads/'.$filename, $data);
 
 // Web accessible file address
-$url = "http://" . $_SERVER['SERVER_NAME'] . str_replace( 'FileDrop/'.basename($_SERVER['PHP_SELF']) , '', $_SERVER['REQUEST_URI'] ).'uploads/'.$filename;
+$url = "https://" . $_SERVER['SERVER_NAME'] . str_replace( 'FileDrop/'.basename($_SERVER['PHP_SELF']) , '', $_SERVER['REQUEST_URI'] ).'uploads/'.$filename;
 
 $output = '{"url":"'.$url.'","lga_code":"'.$lga_code.'"}';
 
